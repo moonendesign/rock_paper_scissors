@@ -14,3 +14,9 @@ function computerChoice (MIN, MAX) {
     else
         return "scissors"
 }
+
+function getHumanChoice() {
+    const choice = prompt("Choose a hand: Rock, Paper or Scissors!");
+    const checkedChoice = choice.toLowerCase();
+    return checkedChoice
+}

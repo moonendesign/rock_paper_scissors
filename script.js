@@ -20,11 +20,17 @@ function getComputerChoice (MAX) {
 
 function getHumanChoice() {
     const choice = prompt("Choose a hand: Rock, Paper or Scissors!");
-    const humanChoice = choice.toLowerCase();
+    if (!choice){
+        console.log("You have not entered anything in the input box you dummy!")
+    }
+    else {
+        const humanChoice = choice.toLowerCase();
         return humanChoice
+    }
 }
 
 function playround(humanChoice, computerChoice) {
+    
     if (humanChoice == "rock" || humanChoice == "paper" || humanChoice == "scissors") {
         if (humanChoice == computerChoice)
             return console.log("You both choosed the same, try again!");

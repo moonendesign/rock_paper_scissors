@@ -1,21 +1,18 @@
-const MIN = 1
-const MAX = 4
-
 let humanScore
 let computerScore
+const MAX = 3;
+
 
 function youLose(humanChoice, computerChoice){
-    return "You choose ${humanChoice} and the compter choose ${computerChoice}. You lose!";
+    return console.log("You choose " + humanChoice + " and the computer choose " + computerChoice + ". You lose!");
 }
 
-
-function computerChoice (MIN, MAX) {
-    const minCeiled = Math.ceil(MIN);
-    const maxFloored = Math.floor(MAX);
-    let choice = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-    if (choice == 1)
+function getComputerChoice (MAX) {
+    let choice = Math.floor(Math.random() * MAX);
+    console.log(choice)
+    if (choice == 0)
         return "rock";
-    else if (choice == 2)
+    else if (choice == 1)
         return "paper";
     else
         return "scissors"
@@ -24,25 +21,31 @@ function computerChoice (MIN, MAX) {
 function getHumanChoice() {
     const choice = prompt("Choose a hand: Rock, Paper or Scissors!");
     const humanChoice = choice.toLowerCase();
-    if (humanChoice == "rock" || checkedChoice == "paper" || checkedChoice == "scissors")
         return humanChoice
-    else
-        return "Not a valid choice, try again!"
 }
 
 function playround(humanChoice, computerChoice) {
-    if (humanChoice == computerChoice)
-        return "You both choosed the same, try again!"
-    else if (humanChoice == "rock" & computerChoice == "paper"){
-        return youLose(humanChoice, computerChoice)
-    } 
-    else if (humanChoice == "paper" & computerChoice == "scissors") {
-        return youLose(humanChoice, computerChoice)
+    if (humanChoice == "rock" || humanChoice == "paper" || humanChoice == "scissors") {
+        if (humanChoice == computerChoice)
+            return console.log("You both choosed the same, try again!");
+        else if (humanChoice == "rock" & computerChoice == "paper"){
+            return youLose(humanChoice, computerChoice);
+        } 
+        else if (humanChoice == "paper" & computerChoice == "scissors") {
+            return youLose(humanChoice, computerChoice);
+        }
+        else if (humanChoice == "scissors" & computerChoice == "rock") {
+            return youLose(humanChoice, computerChoice);
+        }
+        else
+            return console.log("You choose " + humanChoice + " and the computer choose " + computerChoice + ". You win!");
     }
-    else if (humanChoice == "paper" & computerChoice == "scissors") {
-        return youLose(humanChoice, computerChoice)
+    else {       
+        console.log(humanChoice + " is not a valid input. What a bummer!");
     }
-    else
-        return "You choose ${humanChoice} and the compter choose ${computerChoice}. You win!"
 }
 
+const computerChoice = getComputerChoice(MAX);
+const humanChoice = getHumanChoice();
+
+playround(humanChoice, computerChoice);

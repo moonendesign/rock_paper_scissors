@@ -1,15 +1,16 @@
-let humanScore
-let computerScore
+let humanScore = 0;
+let computerScore = 0;
 const MAX = 3;
-
+let round = 0;
 
 function youLose(humanChoice, computerChoice){
+    computerScore++
+    round++
     return console.log("You choose " + humanChoice + " and the computer choose " + computerChoice + ". You lose!");
 }
 
 function getComputerChoice (MAX) {
     let choice = Math.floor(Math.random() * MAX);
-    console.log(choice)
     if (choice == 0)
         return "rock";
     else if (choice == 1)
@@ -44,14 +45,23 @@ function playround(humanChoice, computerChoice) {
             return youLose(humanChoice, computerChoice);
         }
         else
-            return console.log("You choose " + humanChoice + " and the computer choose " + computerChoice + ". You win!");
+        humanScore++
+        round++    
+        return console.log("You choose " + humanChoice + " and the computer choose " + computerChoice + ". You win!");
     }
     else {       
         console.log(humanChoice + " is not a valid input. What a bummer!");
     }
 }
 
-const computerChoice = getComputerChoice(MAX);
-const humanChoice = getHumanChoice();
+do {
+    const computerChoice = getComputerChoice(MAX);
+    const humanChoice = getHumanChoice();
 
 playround(humanChoice, computerChoice);
+}
+while (round < 5);
+
+console.log("Human Score: " + humanScore)
+console.log("Computer Score: " + computerScore)
+console.log("Press F5 to try again!")
